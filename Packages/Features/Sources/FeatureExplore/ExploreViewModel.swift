@@ -1,7 +1,7 @@
 import Foundation
 import Observation
-import UIKit
 import Domain
+import DesignSystem
 
 @Observable
 @MainActor
@@ -13,6 +13,7 @@ final class ExploreViewModel {
     }
 
     var loadState: LoadState = .loading
+    private(set) var hasLoaded = false
     var selectedCategory: Domain.Category = .all
     var searchText: String = ""
 
@@ -27,7 +28,7 @@ final class ExploreViewModel {
 
     func addToPlant(_ place: Place) {
         planStore.add(place)
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        WLHaptics.light()
     }
 
     // Called by .task — skips if data is already available so tab switches don't retrigger fetch
@@ -49,6 +50,7 @@ final class ExploreViewModel {
         do {
             let places = try await repository.loadPlaces()
             loadState = .loaded(places)
+            hasLoaded = true
         } catch is CancellationError {
             // Task cancelled (tab switch during in-flight load) — leave loadState as .loading
             // so the next .onAppear retries naturally

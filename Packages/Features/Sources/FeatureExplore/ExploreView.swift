@@ -4,6 +4,8 @@ import DesignSystem
 
 struct ExploreView: View {
     @State private var vm: ExploreViewModel
+    @State private var cardsAnimated = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(vm: ExploreViewModel) {
         self._vm = State(initialValue: vm)
@@ -26,6 +28,9 @@ struct ExploreView: View {
         .toolbar(.hidden, for: .navigationBar)
         .task { await vm.load() }
         .animation(.easeInOut(duration: 0.25), value: isLoaded)
+        .onChange(of: vm.hasLoaded) { _, loaded in
+            if loaded && !cardsAnimated { cardsAnimated = true }
+        }
     }
 
     // MARK: - Header (pinned above scroll)
@@ -94,7 +99,13 @@ struct ExploreView: View {
                         onTap: { vm.onSelectPlace(place) },
                         onAdd: { vm.addToPlant(place) }
                     )
-                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+                    .opacity(cardsAnimated ? 1 : 0)
+                    .offset(y: (!reduceMotion && !cardsAnimated) ? 14 : 0)
+                    .animation(
+                        WLAnimation.cardEntrance(reduceMotion: reduceMotion)
+                            .delay(Double(index) * WLAnimation.cardEntranceStagger),
+                        value: cardsAnimated
+                    )
                 }
             }
 

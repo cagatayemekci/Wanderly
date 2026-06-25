@@ -28,6 +28,7 @@ public struct PlanFAB: View {
             .wlFABShadow()
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("My Plan, \(count) \(count == 1 ? "place" : "places")")
     }
 
     private var badge: some View {
@@ -37,5 +38,7 @@ public struct PlanFAB: View {
             .frame(width: 24, height: 24)
             .background(.white)
             .clipShape(Circle())
+            .contentTransition(.numericText())
+            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: count)
     }
 }

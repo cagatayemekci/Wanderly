@@ -20,22 +20,23 @@ public struct PlaceCard: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            imageSection
-            bodySection
+        Button(action: onTap) {
+            VStack(alignment: .leading, spacing: 0) {
+                imageSection
+                bodySection
+            }
+            .background(Color.WL.surface)
+            .clipShape(RoundedRectangle(cornerRadius: WLRadius.card))
+            .overlay(
+                RoundedRectangle(cornerRadius: WLRadius.card)
+                    .stroke(
+                        isAdded ? Color.WL.cardBorderAdded : Color.WL.cardBorder,
+                        lineWidth: isAdded ? 1.5 : 1
+                    )
+            )
+            .wlCardShadow()
         }
-        .background(Color.WL.surface)
-        .clipShape(RoundedRectangle(cornerRadius: WLRadius.card))
-        .overlay(
-            RoundedRectangle(cornerRadius: WLRadius.card)
-                .stroke(
-                    isAdded ? Color.WL.cardBorderAdded : Color.WL.cardBorder,
-                    lineWidth: isAdded ? 1.5 : 1
-                )
-        )
-        .wlCardShadow()
-        .contentShape(RoundedRectangle(cornerRadius: WLRadius.card))
-        .onTapGesture(perform: onTap)
+        .buttonStyle(WLCardButtonStyle())
         .accessibilityLabel("\(place.name), \(place.category.displayLabel), \(String(format: "%.1f", place.rating)) stars, \(formatDuration(place.estimatedDurationMin))")
         .accessibilityAddTraits(.isButton)
         .accessibilityAction(named: "View details", onTap)
@@ -119,7 +120,7 @@ public struct PlaceCard: View {
             }
             .foregroundStyle(isAdded ? .white : Color.WL.removeText)
             .padding(.horizontal, 14)
-            .frame(height: 40)
+            .frame(height: 44)
             .background(isAdded ? Color.WL.primary : Color.WL.primaryTint)
             .clipShape(RoundedRectangle(cornerRadius: WLRadius.addButton))
         }

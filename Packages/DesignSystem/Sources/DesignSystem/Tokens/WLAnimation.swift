@@ -27,4 +27,9 @@ public enum WLAnimation {
     public static let shimmer = Animation.linear(duration: 1.4).repeatForever(autoreverses: false)
     public static let cardPress = Animation.spring(response: 0.3, dampingFraction: 0.7)
     public static let liftedCard = Animation.spring(response: 0.25, dampingFraction: 0.6)
+
+    // Swaps to a plain opacity fade when Reduce Motion is enabled
+    public static func cardEntrance(reduceMotion: Bool) -> Animation {
+        reduceMotion ? .easeIn(duration: 0.25) : cardEntrance
+    }
 }

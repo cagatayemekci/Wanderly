@@ -1,7 +1,7 @@
 import Foundation
 import Observation
-import UIKit
 import Domain
+import DesignSystem
 
 @Observable
 @MainActor
@@ -16,10 +16,10 @@ final class PlaceDetailViewModel {
     func togglePlan() {
         if isAdded {
             planStore.remove(place)
-            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            WLHaptics.medium()
         } else {
             planStore.add(place)
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            WLHaptics.light()
         }
     }
 

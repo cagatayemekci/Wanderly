@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 import Domain
 import DesignSystem
 
@@ -39,9 +38,7 @@ struct MyPlanView: View {
             if new < old { triggerUndo() }
         }
         .onChange(of: vm.exceedsTenHours) { old, new in
-            if !old && new {
-                UINotificationFeedbackGenerator().notificationOccurred(.warning)
-            }
+            if !old && new { WLHaptics.warning() }
         }
     }
 
