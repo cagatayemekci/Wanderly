@@ -27,9 +27,7 @@ struct RootTabView: View {
         }
         .sheet(item: $router.presentedPlace) { place in
             DetailScopeContainer(parentScope: scope)
-                .makeView(place: place)
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
+                .makeView(place: place, onDismiss: { router.dismissDetail() })
         }
     }
 

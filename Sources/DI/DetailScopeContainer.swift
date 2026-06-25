@@ -1,13 +1,16 @@
 import SwiftUI
 import Domain
+import FeatureDetail
 
 struct DetailScopeContainer: ScopeContainer {
     let parentScope: ApplicationScope
 
-    // TODO: replace with PlaceDetailView(viewModel:)
     @MainActor
-    func makeView(place: Place) -> some View {
-        Text(place.name)
-            .padding()
+    func makeView(place: Place, onDismiss: @escaping () -> Void) -> some View {
+        PlaceDetailEntryPoint.makeView(
+            place: place,
+            planStore: parentScope.planStore,
+            onDismiss: onDismiss
+        )
     }
 }

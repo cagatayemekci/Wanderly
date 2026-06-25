@@ -141,10 +141,11 @@ public struct PlaceCard: View {
 }
 
 // MARK: - Reusable shimmer overlay
-struct ShimmerOverlay: View {
+public struct ShimmerOverlay: View {
+    public init() {}
     @State private var phase: CGFloat = 0
 
-    var body: some View {
+    public var body: some View {
         GeometryReader { geo in
             let w = geo.size.width
             LinearGradient(
