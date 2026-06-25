@@ -1,0 +1,43 @@
+# ---- Internal planning / docs (NOT for submission) ----
+docs/
+CLAUDE.md
+**/CLAUDE.md
+.claude/
+
+# Ignore all markdown (internal decisions, notes) EXCEPT the required README.md
+*.md
+!README.md
+
+# ---- macOS ----
+.DS_Store
+
+# ---- Xcode / Swift ----
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# ---- Tuist ----
+.tuist/
+Tuist/.build/
+*.xcodeproj
+*.xcworkspace
+!Tuist/**/*.xcodeproj
+Derived/
+graph.dot
+graph.png
+
+# ---- SPM ----
+.build/
+.swiftpm/
+Package.resolved
+
+# ---- Fastlane / misc ----
+fastlane/report.xml
+*.log
