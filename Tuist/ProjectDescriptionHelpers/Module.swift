@@ -24,7 +24,7 @@ public extension Target {
         .target(
             name: name,
             destinations: .iOS,
-            product: .staticFramework,
+            product: .framework,
             bundleId: "\(bundleIdPrefix).\(name.lowercased())",
             deploymentTargets: iOSDeploymentTarget,
             sources: ["\(sourcesPath)/**"],
