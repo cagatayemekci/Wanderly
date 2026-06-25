@@ -7,7 +7,7 @@ let project = Project(
         .plain(
             name: "DesignSystem",
             sourcesPath: "Sources/DesignSystem",
-            resources: ["Resources/**"]
+            deps: [.project(target: "Domain", path: "../Domain")]
         ),
     ]
 )
