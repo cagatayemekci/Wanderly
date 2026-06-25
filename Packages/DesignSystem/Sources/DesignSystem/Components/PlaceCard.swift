@@ -36,6 +36,9 @@ public struct PlaceCard: View {
         .wlCardShadow()
         .contentShape(RoundedRectangle(cornerRadius: WLRadius.card))
         .onTapGesture(perform: onTap)
+        .accessibilityLabel("\(place.name), \(place.category.displayLabel), \(String(format: "%.1f", place.rating)) stars, \(formatDuration(place.estimatedDurationMin))")
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction(named: "View details", onTap)
     }
 
     // MARK: - Image section
@@ -46,14 +49,14 @@ public struct PlaceCard: View {
                 case .success(let image):
                     image.resizable().scaledToFill()
                 case .failure:
-                    Color.WL.warmSubtle
+                    place.category.categoryGradient
                         .overlay(
                             Image(systemName: place.category.sfSymbol)
                                 .font(.system(size: 32, weight: .light))
-                                .foregroundStyle(Color.WL.ink400)
+                                .foregroundStyle(.white.opacity(0.7))
                         )
                 default:
-                    Color.WL.warmSubtle
+                    place.category.categoryGradient
                         .overlay(shimmerView)
                 }
             }
@@ -121,6 +124,7 @@ public struct PlaceCard: View {
             .clipShape(RoundedRectangle(cornerRadius: WLRadius.addButton))
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(isAdded ? "Remove \(place.name) from plan" : "Add \(place.name) to plan")
     }
 
     // MARK: - Shimmer placeholder

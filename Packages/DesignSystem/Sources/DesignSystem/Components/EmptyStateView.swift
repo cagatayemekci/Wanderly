@@ -4,15 +4,15 @@ public struct EmptyStateView: View {
     public let systemImage: String
     public let title: String
     public let subtitle: String
-    public let ctaTitle: String
-    public let ctaAction: () -> Void
+    public let ctaTitle: String?
+    public let ctaAction: (() -> Void)?
 
     public init(
         systemImage: String = "map",
         title: String,
         subtitle: String,
-        ctaTitle: String,
-        ctaAction: @escaping () -> Void
+        ctaTitle: String? = nil,
+        ctaAction: (() -> Void)? = nil
     ) {
         self.systemImage = systemImage
         self.title = title
@@ -34,8 +34,10 @@ public struct EmptyStateView: View {
                     .foregroundStyle(Color.WL.ink600)
                     .multilineTextAlignment(.center)
             }
-            PrimaryButton(ctaTitle, action: ctaAction)
-                .padding(.horizontal, WLSpacing.xl)
+            if let title = ctaTitle, let action = ctaAction {
+                PrimaryButton(title, action: action)
+                    .padding(.horizontal, WLSpacing.xl)
+            }
         }
         .padding(WLSpacing.xl)
     }

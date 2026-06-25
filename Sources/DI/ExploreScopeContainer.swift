@@ -1,15 +1,20 @@
 import SwiftUI
 import Domain
+import FeatureExplore
 
 struct ExploreScopeContainer: ScopeContainer {
     let parentScope: ApplicationScope
 
-    // TODO: replace with ExploreView(viewModel:)
     @MainActor
     func makeRootView(
         onSelectPlace: @escaping (Place) -> Void,
         onGoToPlan: @escaping () -> Void
     ) -> some View {
-        Text("Explore")
+        ExploreEntryPoint.makeView(
+            repository: parentScope.placeRepository,
+            planStore: parentScope.planStore,
+            onSelectPlace: onSelectPlace,
+            onGoToPlan: onGoToPlan
+        )
     }
 }
