@@ -1,6 +1,5 @@
 import Foundation
 import Observation
-import UIKit
 import Domain
 
 @Observable

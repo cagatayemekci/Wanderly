@@ -73,7 +73,7 @@ struct PlaceDetailView: View {
 
     private var peekStatRow: some View {
         HStack(spacing: 0) {
-            statCell(icon: "clock", value: formatDuration(vm.place.estimatedDurationMin))
+            statCell(icon: "clock", value: WLFormatters.duration(vm.place.estimatedDurationMin))
             Rectangle().fill(Color.WL.border).frame(width: 1, height: 28)
             statCell(icon: "dollarsign.circle", value: vm.place.priceLevel.display)
             Rectangle().fill(Color.WL.border).frame(width: 1, height: 28)
@@ -120,7 +120,7 @@ struct PlaceDetailView: View {
                     StatTable(rows: [
                         StatRow(label: "Opening Hours", value: vm.place.openingHours),
                         StatRow(label: "Price",         value: vm.place.priceLevel.display),
-                        StatRow(label: "Visit Duration", value: formatDuration(vm.place.estimatedDurationMin)),
+                        StatRow(label: "Visit Duration", value: WLFormatters.duration(vm.place.estimatedDurationMin)),
                     ])
 
                     VStack(alignment: .leading, spacing: WLSpacing.sm) {
@@ -204,12 +204,6 @@ struct PlaceDetailView: View {
     }
 
     // MARK: - Helpers
-
-    private func formatDuration(_ minutes: Int) -> String {
-        guard minutes >= 60 else { return "\(minutes)min" }
-        let h = minutes / 60; let m = minutes % 60
-        return m == 0 ? "\(h)h" : "\(h)h \(m)min"
-    }
 
     private var openingHoursShort: String {
         let hours = vm.place.openingHours

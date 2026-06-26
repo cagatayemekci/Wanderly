@@ -35,7 +35,7 @@ struct TimelineStopRow: View {
                 Text(stop.place.category.displayLabel)
                     .textStyle(.bodyMedium)
                     .foregroundStyle(Color.WL.ink600)
-                Text(Self.timeFormatter.string(from: stop.arrival))
+                Text(WLFormatters.time.string(from: stop.arrival))
                     .textStyle(.timelineTime)
                     .foregroundStyle(Color.WL.primary)
             }
@@ -52,7 +52,7 @@ struct TimelineStopRow: View {
     }
 
     private var stopAccessibilityLabel: String {
-        let time = Self.timeFormatter.string(from: stop.arrival)
+        let time = WLFormatters.time.string(from: stop.arrival)
         return "\(stop.place.name), \(stop.place.category.displayLabel), arrives \(time)"
     }
 
@@ -67,10 +67,4 @@ struct TimelineStopRow: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
-    private static let timeFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateStyle = .none
-        f.timeStyle = .short
-        return f
-    }()
 }

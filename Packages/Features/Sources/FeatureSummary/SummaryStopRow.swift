@@ -39,7 +39,7 @@ struct SummaryStopRow: View {
                 Text(stop.place.category.displayLabel)
                     .textStyle(.bodyMedium)
                     .foregroundStyle(Color.WL.ink600)
-                Text(Self.timeFormatter.string(from: stop.arrival))
+                Text(WLFormatters.time.string(from: stop.arrival))
                     .textStyle(.timelineTime)
                     .foregroundStyle(Color.WL.primary)
             }
@@ -53,7 +53,4 @@ struct SummaryStopRow: View {
         .wlE1Shadow()
     }
 
-    private static let timeFormatter: DateFormatter = {
-        let f = DateFormatter(); f.dateStyle = .none; f.timeStyle = .short; return f
-    }()
 }

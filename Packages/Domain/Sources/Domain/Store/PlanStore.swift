@@ -27,15 +27,18 @@ public final class PlanStore {
     }
 
     public func remove(at offsets: IndexSet) {
-        if let first = offsets.first, first < itinerary.count {
+        let valid = offsets.filter { $0 < itinerary.count }
+        if let first = valid.first {
             lastRemoved = (itinerary[first], first)
         }
-        for index in offsets.sorted().reversed() {
+        for index in valid.sorted().reversed() {
             itinerary.remove(at: index)
         }
     }
 
     public func move(from source: IndexSet, to destination: Int) {
+        guard source.allSatisfy({ $0 < itinerary.count }),
+              destination <= itinerary.count else { return }
         var removed: [Place] = []
         var adjusted = destination
         for index in source.sorted().reversed() {

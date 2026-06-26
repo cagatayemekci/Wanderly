@@ -101,7 +101,7 @@ public struct PlaceCard: View {
     }
 
     private var durationPill: some View {
-        Text(formatDuration(place.estimatedDurationMin))
+        Text(WLFormatters.duration(place.estimatedDurationMin))
             .textStyle(.footnote)
             .foregroundStyle(Color.WL.ink600)
             .padding(.horizontal, 10)
@@ -135,15 +135,8 @@ public struct PlaceCard: View {
 
     private var accessibilityDescription: String {
         let stars = String(format: "%.1f", place.rating)
-        let duration = formatDuration(place.estimatedDurationMin)
+        let duration = WLFormatters.duration(place.estimatedDurationMin)
         return "\(place.name), \(place.category.displayLabel), \(stars) stars, \(duration)"
-    }
-
-    private func formatDuration(_ minutes: Int) -> String {
-        guard minutes >= 60 else { return "\(minutes)min" }
-        let h = minutes / 60
-        let m = minutes % 60
-        return m == 0 ? "\(h)h" : "\(h)h \(m)min"
     }
 }
 

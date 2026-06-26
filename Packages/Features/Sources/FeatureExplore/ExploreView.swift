@@ -97,7 +97,7 @@ struct ExploreView: View {
                         place: place,
                         isAdded: vm.isAdded(place),
                         onTap: { vm.onSelectPlace(place) },
-                        onAdd: { vm.addToPlant(place) }
+                        onAdd: { vm.addToPlan(place) }
                     )
                     .opacity(cardsAnimated ? 1 : 0)
                     .offset(y: (!reduceMotion && !cardsAnimated) ? 14 : 0)

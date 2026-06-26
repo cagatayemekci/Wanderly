@@ -90,7 +90,7 @@ struct ExploreViewModelTests {
         let place = makePlace(id: "p1")
         let (vm, store) = makeVM(places: [place])
         await vm.load()
-        vm.addToPlant(place)
+        vm.addToPlan(place)
         #expect(store.contains(place))
     }
 }

@@ -26,7 +26,7 @@ final class ExploreViewModel {
 
     func isAdded(_ place: Place) -> Bool { planStore.contains(place) }
 
-    func addToPlant(_ place: Place) {
+    func addToPlan(_ place: Place) {
         planStore.add(place)
         WLHaptics.light()
     }

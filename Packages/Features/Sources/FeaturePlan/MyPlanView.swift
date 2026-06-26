@@ -84,7 +84,7 @@ struct MyPlanView: View {
         HStack(spacing: 0) {
             summaryCell(value: "\(vm.summary.totalStops)", label: "stops")
             Rectangle().fill(Color.WL.border).frame(width: 1, height: 28)
-            summaryCell(value: formatDuration(vm.summary.totalDurationMin), label: "total")
+            summaryCell(value: WLFormatters.duration(vm.summary.totalDurationMin), label: "total")
             Rectangle().fill(Color.WL.border).frame(width: 1, height: 28)
             summaryCell(value: timeWindow, label: "time")
         }
@@ -181,17 +181,6 @@ struct MyPlanView: View {
     }
 
     private var timeWindow: String {
-        "\(Self.tf.string(from: vm.summary.startTime))→\(Self.tf.string(from: vm.summary.endTime))"
+        "\(WLFormatters.time.string(from: vm.summary.startTime))→\(WLFormatters.time.string(from: vm.summary.endTime))"
     }
-
-    private func formatDuration(_ minutes: Int) -> String {
-        let h = minutes / 60, m = minutes % 60
-        if h == 0 { return "\(m)min" }
-        if m == 0 { return "\(h)h" }
-        return "\(h)h \(m)m"
-    }
-
-    private static let tf: DateFormatter = {
-        let f = DateFormatter(); f.dateStyle = .none; f.timeStyle = .short; return f
-    }()
 }

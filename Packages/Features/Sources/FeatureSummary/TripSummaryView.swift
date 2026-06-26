@@ -24,7 +24,7 @@ struct TripSummaryView: View {
 
                 StatTable(rows: [
                     StatRow(label: "Stops",          value: "\(vm.summary.totalStops)"),
-                    StatRow(label: "Total Duration", value: formatDuration(vm.summary.totalDurationMin)),
+                    StatRow(label: "Total Duration", value: WLFormatters.duration(vm.summary.totalDurationMin)),
                     StatRow(label: "Est. Cost",      value: vm.summary.totalCostLevel.display),
                 ])
                 .padding(.horizontal, WLSpacing.pageInset)
@@ -131,12 +131,4 @@ struct TripSummaryView: View {
         .background(Color.WL.surface)
     }
 
-    // MARK: - Helpers
-
-    private func formatDuration(_ minutes: Int) -> String {
-        let h = minutes / 60, m = minutes % 60
-        if h == 0 { return "\(m)min" }
-        if m == 0 { return "\(h)h" }
-        return "\(h)h \(m)m"
-    }
 }
