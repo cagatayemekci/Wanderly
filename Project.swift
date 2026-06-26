@@ -12,6 +12,25 @@ let appSettings: SettingsDictionary = [
     "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
 ]
 
+let swiftLintScript = TargetScript.pre(
+    script: """
+    export PATH="$PATH:/opt/homebrew/bin:/usr/local/bin"
+
+    # Unset iOS SDK env vars so Mint/SPM can build tools for the macOS host
+    unset SDKROOT PLATFORM_NAME ARCHS ONLY_ACTIVE_ARCH
+
+    if command -v mint > /dev/null; then
+        mint run swiftlint swiftlint --config "${SRCROOT}/.swiftlint.yml"
+    elif command -v swiftlint > /dev/null; then
+        swiftlint --config "${SRCROOT}/.swiftlint.yml"
+    else
+        echo "warning: SwiftLint not installed. Run: brew install mint && mint bootstrap"
+    fi
+    """,
+    name: "SwiftLint",
+    basedOnDependencyAnalysis: false
+)
+
 let project = Project(
     name: "Wanderly",
     organizationName: "Wanderly",
@@ -29,6 +48,7 @@ let project = Project(
             ]),
             sources: ["Sources/**"],
             resources: ["Resources/**"],
+            scripts: [swiftLintScript],
             dependencies: [
                 .project(target: "Domain",         path: "Packages/Domain"),
                 .project(target: "Data",            path: "Packages/Data"),

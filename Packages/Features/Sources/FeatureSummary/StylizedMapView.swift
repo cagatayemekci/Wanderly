@@ -8,7 +8,7 @@ struct StylizedMapView: View {
     private let yPattern: [CGFloat] = [0.60, 0.28, 0.68, 0.22, 0.72, 0.30, 0.62, 0.20]
 
     private func pinPoints(in size: CGSize) -> [CGPoint] {
-        places.enumerated().map { i, _ in
+        places.indices.map { i in
             CGPoint(
                 x: size.width  * CGFloat(i + 1) / CGFloat(places.count + 1),
                 y: size.height * yPattern[i % yPattern.count]

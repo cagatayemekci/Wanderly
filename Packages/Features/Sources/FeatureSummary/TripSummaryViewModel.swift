@@ -23,7 +23,8 @@ final class TripSummaryViewModel {
             lines.append("\(i + 1). \(stop.place.name) – \(time)")
         }
         lines.append("")
-        lines.append("Total: \(summary.totalStops) stops · \(formatDuration(summary.totalDurationMin)) · \(summary.totalCostLevel.display)")
+        let duration = formatDuration(summary.totalDurationMin)
+        lines.append("Total: \(summary.totalStops) stops · \(duration) · \(summary.totalCostLevel.display)")
         lines.append("")
         lines.append("Made with Wanderly")
         return lines.joined(separator: "\n")

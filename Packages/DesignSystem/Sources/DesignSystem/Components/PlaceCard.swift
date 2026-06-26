@@ -37,7 +37,7 @@ public struct PlaceCard: View {
             .wlCardShadow()
         }
         .buttonStyle(WLCardButtonStyle())
-        .accessibilityLabel("\(place.name), \(place.category.displayLabel), \(String(format: "%.1f", place.rating)) stars, \(formatDuration(place.estimatedDurationMin))")
+        .accessibilityLabel(accessibilityDescription)
         .accessibilityAddTraits(.isButton)
         .accessibilityAction(named: "View details", onTap)
     }
@@ -131,6 +131,12 @@ public struct PlaceCard: View {
     // MARK: - Shimmer placeholder
     private var shimmerView: some View {
         ShimmerOverlay()
+    }
+
+    private var accessibilityDescription: String {
+        let stars = String(format: "%.1f", place.rating)
+        let duration = formatDuration(place.estimatedDurationMin)
+        return "\(place.name), \(place.category.displayLabel), \(stars) stars, \(duration)"
     }
 
     private func formatDuration(_ minutes: Int) -> String {

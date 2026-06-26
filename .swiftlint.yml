@@ -1,0 +1,53 @@
+included:
+  - Sources
+  - Tests
+  - Packages
+
+excluded:
+  - Derived
+  - Packages/*/Tests
+
+disabled_rules:
+  - trailing_whitespace       # SwiftFormat handles whitespace
+  - trailing_comma            # SwiftFormat controls trailing commas
+  - comma                     # SwiftFormat controls comma spacing
+  - opening_brace             # we use alignment formatting
+  - colon                     # we use alignment spacing in named arguments
+  - todo
+
+opt_in_rules:
+  - closure_spacing
+  - contains_over_filter_count
+  - first_where
+  - toggle_bool
+
+line_length:
+  warning: 120
+  error: 160
+
+type_body_length:
+  warning: 300
+
+file_length:
+  warning: 400
+
+type_name:
+  min_length: 2
+  excluded:
+    - WL
+
+identifier_name:
+  min_length: 2
+  excluded:
+    - id
+    - vm
+    - x
+    - y
+    - r
+    - h
+    - w
+    - i
+    - p
+    - f
+    - s
+    - m

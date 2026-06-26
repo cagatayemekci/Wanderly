@@ -48,7 +48,12 @@ struct TimelineStopRow: View {
         .clipShape(RoundedRectangle(cornerRadius: WLRadius.timeline))
         .wlE1Shadow()
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(stop.place.name), \(stop.place.category.displayLabel), arrives \(Self.timeFormatter.string(from: stop.arrival))")
+        .accessibilityLabel(stopAccessibilityLabel)
+    }
+
+    private var stopAccessibilityLabel: String {
+        let time = Self.timeFormatter.string(from: stop.arrival)
+        return "\(stop.place.name), \(stop.place.category.displayLabel), arrives \(time)"
     }
 
     private var thumbnail: some View {

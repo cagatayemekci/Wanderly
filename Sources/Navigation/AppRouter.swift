@@ -6,7 +6,7 @@ import Domain
 final class AppRouter {
     var selectedTab: AppTab = .explore
     var planPath: [PlanRoute] = []
-    var presentedPlace: Place? = nil
+    var presentedPlace: Place?
 
     func selectPlace(_ place: Place) { presentedPlace = place }
     func dismissDetail()             { presentedPlace = nil }
