@@ -23,7 +23,7 @@ A native SwiftUI day-planner for exploring Jaipur. Browse 35 curated places, bui
 **Steps**
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/cagatayemekci/Wanderly.git
 cd Wanderly
 mint bootstrap          # installs SwiftLint 0.57.1 and SwiftFormat 0.54.6
 tuist generate
