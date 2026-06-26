@@ -10,6 +10,7 @@ let appSettings: SettingsDictionary = [
     "ENABLE_PREVIEWS": "YES",
     "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
     "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+    "ENABLE_USER_SCRIPT_SANDBOXING": "NO",
 ]
 
 let swiftLintScript = TargetScript.pre(

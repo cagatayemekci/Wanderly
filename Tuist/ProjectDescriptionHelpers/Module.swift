@@ -5,11 +5,13 @@ public let iOSDeploymentTarget = DeploymentTargets.iOS("17.0")
 
 let baseSettings: SettingsDictionary = [
     "SWIFT_VERSION": "5.0",
+    "ENABLE_USER_SCRIPT_SANDBOXING": "NO",
 ]
 
 let strictSettings: SettingsDictionary = [
     "SWIFT_VERSION": "5.0",
     "SWIFT_STRICT_CONCURRENCY": "complete",
+    "ENABLE_USER_SCRIPT_SANDBOXING": "NO",
 ]
 
 public extension Target {
