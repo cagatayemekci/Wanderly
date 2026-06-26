@@ -20,26 +20,26 @@ public struct PlaceCard: View {
     }
 
     public var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 0) {
-                imageSection
-                bodySection
-            }
-            .background(Color.WL.surface)
-            .clipShape(RoundedRectangle(cornerRadius: WLRadius.card))
-            .overlay(
-                RoundedRectangle(cornerRadius: WLRadius.card)
-                    .stroke(
-                        isAdded ? Color.WL.cardBorderAdded : Color.WL.cardBorder,
-                        lineWidth: isAdded ? 1.5 : 1
-                    )
-            )
-            .wlCardShadow()
+        VStack(alignment: .leading, spacing: 0) {
+            imageSection
+            bodySection
         }
-        .buttonStyle(WLCardButtonStyle())
+        .background(Color.WL.surface)
+        .clipShape(RoundedRectangle(cornerRadius: WLRadius.card))
+        .overlay(
+            RoundedRectangle(cornerRadius: WLRadius.card)
+                .stroke(
+                    isAdded ? Color.WL.cardBorderAdded : Color.WL.cardBorder,
+                    lineWidth: isAdded ? 1.5 : 1
+                )
+        )
+        .wlCardShadow()
+        .contentShape(RoundedRectangle(cornerRadius: WLRadius.card))
+        .onTapGesture(perform: onTap)
         .accessibilityLabel(accessibilityDescription)
         .accessibilityAddTraits(.isButton)
         .accessibilityAction(named: "View details", onTap)
+        .accessibilityIdentifier("placeCard_\(place.id)")
     }
 
     // MARK: - Image section
@@ -66,6 +66,7 @@ public struct PlaceCard: View {
             .overlay(imageGradient)
 
             CategoryChip(label: place.category.displayLabel, isSelected: true, action: {})
+                .allowsHitTesting(false)
                 .padding(10)
         }
         .frame(height: 158)
@@ -126,6 +127,7 @@ public struct PlaceCard: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(isAdded ? "Remove \(place.name) from plan" : "Add \(place.name) to plan")
+        .accessibilityIdentifier("addButton_\(place.id)")
     }
 
     // MARK: - Shimmer placeholder

@@ -2,6 +2,12 @@
 
 A native SwiftUI day-planner for exploring Jaipur. Browse 35 curated places, build a personalised itinerary, reorder stops, and review a trip summary with cost and duration estimates.
 
+## Demo
+
+[![Wanderly walkthrough](https://cdn.loom.com/sessions/thumbnails/2f840955ff8a4e35b5cac3901a26499c-with-play.gif)](https://www.loom.com/share/2f840955ff8a4e35b5cac3901a26499c)
+
+▶️ [Watch the walkthrough on Loom](https://www.loom.com/share/2f840955ff8a4e35b5cac3901a26499c)
+
 ---
 
 ## Setup
@@ -139,11 +145,10 @@ Three features share the same store simultaneously:
 Run all tests: **⌘U** in Xcode, or via the command line:
 
 ```bash
-xcodebuild test \
-  -workspace Wanderly.xcworkspace \
-  -scheme Wanderly \
-  -destination 'platform=iOS Simulator,name=iPhone 16'
+make test
 ```
+
+Tuist generates a separate scheme per package (Domain, Data, Features, Wanderly). `make test` runs all four in sequence; running `⌘U` in Xcode against the `Wanderly` workspace scheme executes every test target at once.
 
 ---
 

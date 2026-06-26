@@ -29,6 +29,7 @@ public struct PlanFAB: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel("My Plan, \(count) \(count == 1 ? "place" : "places")")
+        .accessibilityIdentifier("planFAB")
     }
 
     private var badge: some View {

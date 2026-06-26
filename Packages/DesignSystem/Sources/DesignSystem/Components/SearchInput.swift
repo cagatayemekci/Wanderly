@@ -39,5 +39,6 @@ public struct SearchInput: View {
             RoundedRectangle(cornerRadius: 14)
                 .stroke(Color.WL.border, lineWidth: 1)
         )
+        .accessibilityIdentifier("searchInput")
     }
 }
