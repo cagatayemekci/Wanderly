@@ -148,7 +148,7 @@ Run all tests: **⌘U** in Xcode, or via the command line:
 make test
 ```
 
-Tuist generates a separate scheme per package (Domain, Data, Features, Wanderly). `make test` runs all four in sequence; running `⌘U` in Xcode against the `Wanderly` workspace scheme executes every test target at once.
+`make test` runs the aggregate `Wanderly-Workspace` scheme, which Tuist generates to include every test target (DomainTests, DataTests, FeatureExploreTests, FeaturePlanTests, AppTests). Running `⌘U` in Xcode against the same scheme executes them all at once.
 
 ---
 

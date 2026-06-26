@@ -1,20 +1,16 @@
 MINT := $(shell command -v mint 2>/dev/null)
-DESTINATION := platform=iOS Simulator,name=iPhone 16
-TEST_SCHEMES := Wanderly Domain Data Features
+DESTINATION := platform=iOS Simulator,name=iPhone 17
+TEST_SCHEME := Wanderly-Workspace
 
 bootstrap:
 	mint bootstrap
 
 test:
-	@for scheme in $(TEST_SCHEMES); do \
-		echo "▶ Testing $$scheme…"; \
-		xcodebuild test \
-			-workspace Wanderly.xcworkspace \
-			-scheme "$$scheme" \
-			-destination '$(DESTINATION)' \
-			-quiet \
-		&& echo "✓ $$scheme" || exit 1; \
-	done
+	xcodebuild test \
+		-workspace Wanderly.xcworkspace \
+		-scheme "$(TEST_SCHEME)" \
+		-destination '$(DESTINATION)' \
+		-quiet
 
 lint:
 ifdef MINT
