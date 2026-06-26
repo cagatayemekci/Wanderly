@@ -27,7 +27,7 @@ struct RootTabView: View {
         }
         .sheet(item: $router.presentedPlace) { place in
             DetailScopeContainer(parentScope: scope)
-                .makeView(place: place, onDismiss: { router.dismissDetail() })
+                .makeView(place: place.place, onDismiss: { router.dismissDetail() })
         }
     }
 

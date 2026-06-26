@@ -87,7 +87,7 @@ ViewModels use `@Observable` (iOS 17) with `@MainActor` isolation.
 `AppRouter` (`@Observable @MainActor`) is the single source of navigation truth, held in the root view:
 
 - `selectedTab` — Explore / My Plan tab selection
-- `presentedPlace: Place?` — drives the detail bottom sheet via `.sheet(item:)`
+- `presentedPlace: PresentedPlace?` — drives the detail bottom sheet via `.sheet(item:)`, with a fresh presentation identity for each card tap
 - `planPath: [PlanRoute]` — `NavigationStack` path for the Plan → Summary push
 
 Feature modules have zero knowledge of navigation. They receive callbacks (`onGoToPlan`, `onSelectPlace`) that the root wires to router mutations — keeping every screen independently previewable and testable.

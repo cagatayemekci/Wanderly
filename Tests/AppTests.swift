@@ -22,7 +22,16 @@ struct AppRouterTests {
         let router = AppRouter()
         let place = makePlace()
         router.selectPlace(place)
-        #expect(router.presentedPlace == place)
+        #expect(router.presentedPlace?.place == place)
+    }
+
+    @Test func selectingSamePlaceCreatesNewPresentation() {
+        let router = AppRouter()
+        let place = makePlace()
+        router.selectPlace(place)
+        let firstPresentationID = router.presentedPlace?.id
+        router.selectPlace(place)
+        #expect(router.presentedPlace?.id != firstPresentationID)
     }
 
     @Test func dismissDetailClearsPresentedPlace() {
